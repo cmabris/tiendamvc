@@ -11,7 +11,11 @@ class LoginController extends Controller
 
     public function index()
     {
-        $data = [];
+        $data = [
+            'titulo' => 'Login',
+            'menu'   => false,
+        ];
+
         $this->view('login', $data);
     }
 
