@@ -4,7 +4,7 @@
         <h1 class="text-center">Registro</h1>
     </div>
     <div class="card-body">
-        <form action="login/registro" method="post">
+        <form action="<?= ROOT ?>login/registro/" method="post">
             <div class="form-group text-left">
                 <label for="first_name">Nombre:</label>
                 <input type="text" name="first_name" id="first_name" class="form-control"
@@ -73,7 +73,7 @@
             </div>
             <div class="form-group text-left">
                 <input type="submit" value="Enviar datos" class="btn btn-success">
-                <a href="login/" class="btn btn-info">Cancelar</a>
+                <a href="<?= ROOT ?>login/" class="btn btn-info">Cancelar</a>
             </div>
         </form>
     </div>
