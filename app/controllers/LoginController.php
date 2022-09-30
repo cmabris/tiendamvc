@@ -96,9 +96,37 @@ class LoginController extends Controller
             if (count($errors) == 0) {
 
                 if ($this->model->createUser($dataForm)) {
-                    print 'Registro insertado correctamente';
+
+                    $data = [
+                        'titulo' => 'Bienvenido',
+                        'menu' => false,
+                        'errors' => [],
+                        'subtitle' => 'Bienvenido/a a nuestra tienda online',
+                        'text' => 'Gracias por su registro',
+                        'color' => 'alert-success',
+                        'url' => 'menu',
+                        'colorButton' => 'btn-success',
+                        'textButton' => 'Acceder',
+                    ];
+
+                    $this->view('mensaje', $data);
+
                 } else {
-                    print 'No se pudo insertar';
+
+                    $data = [
+                        'titulo' => 'Error',
+                        'menu' => false,
+                        'errors' => [],
+                        'subtitle' => 'Error en el proceso de registro.',
+                        'text' => 'Probablemente el correo utilizado ya exista. Pruebe con otro',
+                        'color' => 'alert-danger',
+                        'url' => 'login',
+                        'colorButton' => 'btn-danger',
+                        'textButton' => 'Regresar',
+                    ];
+
+                    $this->view('mensaje', $data);
+
                 }
 
             } else {
