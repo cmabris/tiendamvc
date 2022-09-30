@@ -53,4 +53,9 @@ class Login
 
         return $response;
     }
+
+    public function sendEmail($email)
+    {
+        print 'Enviado email a ' . $email;
+    }
 }
