@@ -54,8 +54,35 @@ class Login
         return $response;
     }
 
+    public function getUserByEmail($email)
+    {
+        $sql = 'SELECT * FROM users WHERE email=:email';
+        $query = $this->db->prepare($sql);
+        $query->bindParam(':email', $email, PDO::PARAM_STR);
+        $query->execute();
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
     public function sendEmail($email)
     {
-        print 'Enviado email a ' . $email;
+        $user = $this->getUserByEmail($email);
+
+        $fullName = $user->first_name . ' ' .
+            $user->last_name_1 . ' ' .
+            $user->last_name_2;
+
+        $msg = $fullName . ', accede al siguiente enlace para cambiar tu contraseña. <br>';
+        $msg .= '<a href="' . ROOT . 'login/changePassword/' . $user->id . '">Cambia tu clave de acceso</a>';
+
+        $headers = 'MIME-Version: 1.0\r\n';
+        $headers .= 'Content-type:text/html; charset=UTF-8\r\n';
+        $headers .= 'From: tiendamvc\r\n';
+        $headers .= 'Reply-to: administracion@tiendamvc.local';
+
+        $subject = "Cambiar contraseña en tiendamvc";
+
+        return mail($email, $subject, $msg, $headers);
+
     }
 }
