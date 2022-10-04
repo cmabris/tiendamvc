@@ -26,7 +26,7 @@ class Login
         if ( ! $this->existsEmail($data['email'])) {
             // Crear el usuario
 
-            $password = hash_hmac('sha512', $data['password'], 'elperrodesanroque');
+            $password = hash_hmac('sha512', $data['password'], ENCRIPTKEY);
 
             $sql = 'INSERT INTO users(first_name, last_name_1, last_name_2, email, 
                   address, city, state, zipcode, country, password) 
@@ -88,7 +88,7 @@ class Login
 
     public function changePassword($id, $password)
     {
-        $pass = hash_hmac('sha512', $password, 'elperrodesanroque');
+        $pass = hash_hmac('sha512', $password, ENCRIPTKEY);
 
         $sql = 'UPDATE users SET password=:password WHERE id=:id';
         $params = [
@@ -97,5 +97,22 @@ class Login
         ];
         $query = $this->db->prepare($sql);
         return $query->execute($params);
+    }
+
+    public function verifyUser($email, $password)
+    {
+        $errors = [];
+
+        $user = $this->getUserByEmail($email);
+
+        $pass = hash_hmac('sha512', $password, ENCRIPTKEY);
+
+        if ( ! $user ) {
+            array_push($errors, 'El usuario no existe en nuestros registros');
+        } elseif ($user->password != $pass) {
+            array_push($errors, 'La contraseña no es correcta');
+        }
+
+        return $errors;
     }
 }
