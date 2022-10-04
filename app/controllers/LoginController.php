@@ -319,11 +319,21 @@ class LoginController extends Controller
 
             $errors = $this->model->verifyUser($user, $password);
 
+            $dataForm = [
+                'user' => $user,
+                'remember' => $remember,
+            ];
+
             if ( ! $errors ) {
                 print 'Bienvenid@';
             } else {
-                print 'Lo sentimos pero no tiene acceso';
-                var_dump($errors);
+                $data = [
+                    'titulo' => 'Login',
+                    'menu'   => false,
+                    'errors' => $errors,
+                    'data' => $dataForm,
+                ];
+                $this->view('login', $data);
             }
 
         } else {
