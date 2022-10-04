@@ -325,7 +325,7 @@ class LoginController extends Controller
             ];
 
             if ( ! $errors ) {
-                print 'Bienvenid@';
+                header("location:" . ROOT . 'shop');
             } else {
                 $data = [
                     'titulo' => 'Login',

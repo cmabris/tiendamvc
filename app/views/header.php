@@ -20,9 +20,9 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a href="<?= ROOT ?>" class="navbar-brand">Tienda</a>
     <div class="collapse navbar-collapse" id="menu">
-        // Enlaces del menú para todos
+<!--        Enlaces del menú para todos-->
         <?php if($data['menu']): ?>
-            // Ubicación del menú para usuarios logueados
+<!--            Ubicación del menú para usuarios logueados-->
         <?php endif; ?>
     </div>
 </nav>

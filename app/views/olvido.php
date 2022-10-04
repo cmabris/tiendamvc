@@ -11,6 +11,7 @@
                 </div>
                 <div class="form-group text-left mt-2">
                     <input type="submit" value="Enviar" class="btn btn-success">
+                    <a href="<?= ROOT ?>login" class="btn btn-info">Cancelar</a>
                 </div>
             </form>
         </div>
