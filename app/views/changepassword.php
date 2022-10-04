@@ -5,6 +5,7 @@
         </div>
         <div class="card-body">
             <form action="<?= ROOT ?>login/changePassword/<?= $data['data'] ?>" method="post">
+                <input type="hidden" name="id" value="<?= $data['data'] ?>">
                 <div class="form-group text-left">
                     <label for="password1">Clave de acceso:</label>
                     <input type="password" name="password1" id="password1" class="form-control"

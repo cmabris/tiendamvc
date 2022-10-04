@@ -227,13 +227,52 @@ class LoginController extends Controller
 
     public function changePassword($id)
     {
-        $data = [
-            'titulo' => 'Cambiar contraseña',
-            'menu'   => false,
-            'data' => $id,
-            'subtitle' => 'Cambia tu contraseña de acceso',
-        ];
+        $errors = [];
 
-        $this->view('changepassword', $data);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $id = $_POST['id'] ?? '';
+            $password1 = $_POST['password1'] ?? '';
+            $password2 = $_POST['password2'] ?? '';
+
+            if ($id == '') {
+                array_push($errors, 'El usuario no existe');
+            }
+            if ($password1 == '') {
+                array_push($errors, 'La contraseña es requerida');
+            }
+            if ($password2 == '') {
+                array_push($errors, 'Repetir contraseña es requerido');
+            }
+            if ($password1 != $password2) {
+                array_push($errors, 'Ambas claves deben ser iguales');
+            }
+            
+            if (count($errors)) {
+
+                $data = [
+                    'titulo' => 'Cambiar contraseña',
+                    'menu'   => false,
+                    'errors' => $errors,
+                    'data' => $id,
+                    'subtitle' => 'Cambia tu contraseña de acceso',
+                ];
+
+                $this->view('changepassword', $data);
+
+            } else {
+
+            }
+
+        } else {
+            $data = [
+                'titulo' => 'Cambiar contraseña',
+                'menu'   => false,
+                'data' => $id,
+                'subtitle' => 'Cambia tu contraseña de acceso',
+            ];
+
+            $this->view('changepassword', $data);
+        }
     }
 }
