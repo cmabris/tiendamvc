@@ -19,4 +19,16 @@ class AdminController extends Controller
 
         $this->view('admin/index', $data);
     }
+
+    public function verifyUser()
+    {
+        $data = [
+            'titulo' => 'Administración - Inicio',
+            'menu' => false,
+            'admin' => true,
+            'data' => [],
+        ];
+
+        $this->view('admin/index2', $data);
+    }
 }
