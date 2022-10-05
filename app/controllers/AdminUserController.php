@@ -35,7 +35,7 @@ class AdminUserController extends Controller
             $dataForm = [
                 'name' => $name,
                 'email' => $email,
-                'password1' => $password1,
+                'password' => $password1,
             ];
 
             if (empty($name)) {
@@ -55,7 +55,13 @@ class AdminUserController extends Controller
             }
 
             if ( ! $errors) {
-                // Añadir en DB
+
+                if ($this->model->createAdminUser($dataForm)) {
+
+                } else {
+
+                }
+
             } else {
 
                 $data = [
