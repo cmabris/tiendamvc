@@ -46,6 +46,10 @@ class AdminController extends Controller
                 $errors = $this->model->verifyUser($dataForm);
 
                 if ( ! $errors ) {
+
+                    $session = new Session();
+                    $session->login($dataForm);
+
                     header("LOCATION:" . ROOT . 'AdminShop');
                 }
 
