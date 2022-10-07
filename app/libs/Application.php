@@ -54,7 +54,7 @@ class Application
             $url = explode('/', $url);
 
             $this->urlController = $url[0] ?? null;
-            $this->urlAction = $url[1] ?? null;
+            $this->urlAction = $url[1] ?? '';
 
             unset($url[0], $url[1]);
 
