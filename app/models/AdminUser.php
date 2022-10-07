@@ -56,4 +56,13 @@ class AdminUser
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function getUserById($id)
+    {
+        $sql = 'SELECT * FROM admins WHERE id=:id';
+        $query = $this->db->prepare($sql);
+        $query->execute([':id' => $id]);
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 }

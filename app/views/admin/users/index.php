@@ -18,7 +18,11 @@
                         <td class="text-center"><?= $user->id ?></td>
                         <td class="text-center"><?= $user->name ?></td>
                         <td class="text-center"><?= $user->email ?></td>
-                        <td class="text-center btn btn-info">Editar</td>
+                        <td class="text-center">
+                            <a href="<?= ROOT ?>adminuser/update/<?= $user->id ?>"
+                                class="btn btn-info"
+                            >Editar</a>
+                        </td>
                         <td class="text-center btn btn-danger">Borrar</td>
                     </tr>
                 <?php endforeach; ?>
