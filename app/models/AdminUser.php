@@ -65,4 +65,13 @@ class AdminUser
 
         return $query->fetch(PDO::FETCH_OBJ);
     }
+
+    public function getConfig($type)
+    {
+        $sql = 'SELECT * FROM config WHERE type=:type ORDER BY value DESC';
+        $query = $this->db->prepare($sql);
+        $query->execute([':type' => $type]);
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 }

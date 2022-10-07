@@ -120,12 +120,14 @@ class AdminUserController extends Controller
         } else {
 
             $user = $this->model->getUserById($id);
+            $status = $this->model->getConfig('adminStatus');
 
             $data = [
                 'titulo' => 'Administración de Usuarios - Editar',
                 'menu' => false,
                 'admin' => true,
                 'data' => $user,
+                'status' => $status,
             ];
 
             $this->view('admin/users/update', $data);
