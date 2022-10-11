@@ -74,4 +74,46 @@ class AdminUser
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function setUser($user)
+    {
+        $errors = [];
+
+        if ($user['password']) {
+
+            $sql = 'UPDATE admins SET name=:name, email=:email, password=:password, status=:status, updated_at=:updated_at 
+                    WHERE id=:id';
+            $pass = hash_hmac('sha512', $user['password'], ENCRIPTKEY);
+            $params = [
+                ':id' => $user['id'],
+                ':name' => $user['name'],
+                ':email' => $user['email'],
+                ':password' => $pass,
+                ':status' => $user['status'],
+                ':updated_at' => date('Y-m-d H:i:s'),
+            ];
+
+        } else {
+
+            $sql = 'UPDATE admins SET name=:name, email=:email, status=:status, updated_at=:updated_at 
+                    WHERE id=:id';
+            $params = [
+                ':id' => $user['id'],
+                ':name' => $user['name'],
+                ':email' => $user['email'],
+                ':status' => $user['status'],
+                ':updated_at' => date('Y-m-d H:i:s'),
+            ];
+
+        }
+
+        $query = $this->db->prepare($sql);
+
+        if ( ! $query->execute($params) ) {
+            array_push($errors, 'Error al modificar el usuario administrador');
+        }
+
+        return $errors;
+
+    }
 }
