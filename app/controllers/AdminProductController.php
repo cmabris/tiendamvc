@@ -35,11 +35,17 @@ class AdminProductController extends Controller
 
     public function create()
     {
+        $errors = [];
+        $dataForm = [];
+        $type = $this->model->getConfig('productType');
+
         $data = [
             'titulo' => 'Administración de Productos - Alta',
             'menu' => false,
             'admin' => true,
-            'data' => [],
+            'type' => $type,
+            'errors' => $errors,
+            'data' => $dataForm,
         ];
 
         $this->view('admin/products/create', $data);
