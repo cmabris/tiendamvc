@@ -117,6 +117,32 @@ class AdminUserController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+            $errors = [];
+
+            $name = $_POST['name'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $password1 = $_POST['password1'] ?? '';
+            $password2 = $_POST['password2'] ?? '';
+            $status = $_POST['status'] ?? '';
+
+            $dataForm = [
+                'name' => $name,
+                'email' => $email,
+                'password' => $password1,
+                'status' => $status,
+            ];
+
+            if ($name == '') {
+                array_push($errors, 'El nombre del usuario es requerido');
+            }
+            if ($email == '') {
+                array_push($errors, 'El email es requerido');
+            }
+            if ($status == '') {
+                array_push($errors, 'Selecciona un estado para el usuario');
+            }
+            var_dump($dataForm, $errors);
+
         } else {
 
             $user = $this->model->getUserById($id);
