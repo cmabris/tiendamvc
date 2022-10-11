@@ -170,8 +170,32 @@ class AdminUserController extends Controller
         $this->view('admin/users/update', $data);
     }
 
-    public function delete()
+    public function delete($id)
     {
-        print 'Eliminación de usuarios';
+        $errors = [];
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $errors = $this->model->delete($id);
+
+            if ( ! $errors ) {
+                header('location:' . ROOT . 'adminuser');
+            }
+
+        }
+
+        $user = $this->model->getUserById($id);
+        $status = $this->model->getConfig('adminStatus');
+
+        $data = [
+            'titulo' => 'Administración de Usuarios - Eliminación',
+            'menu' => false,
+            'admin' => true,
+            'data' => $user,
+            'status' => $status,
+            'errors' => $errors,
+        ];
+
+        $this->view('admin/users/delete', $data);
     }
 }

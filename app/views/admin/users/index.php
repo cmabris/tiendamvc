@@ -23,7 +23,11 @@
                                 class="btn btn-info"
                             >Editar</a>
                         </td>
-                        <td class="text-center btn btn-danger">Borrar</td>
+                        <td class="text-center">
+                            <a href="<?= ROOT ?>adminuser/delete/<?= $user->id ?>"
+                               class="btn btn-danger"
+                            >Borrar</a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
