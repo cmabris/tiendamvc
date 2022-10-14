@@ -85,6 +85,11 @@ class AdminProductController extends Controller
             if (is_numeric($price) && is_numeric($discount) && $price < $discount) {
                 array_push($errors, 'El descuento no puede ser mayor que el precio');
             }
+            if ( ! Validate::date($published) ) {
+                array_push($errors, 'La fecha o su formato no es correcto');
+            } elseif ( ! Validate::dateDif($published)) {
+                array_push($errors, 'La fecha de publicación no puede ser anterior a hoy');
+            }
             if ($type == 1) {
                 if (empty($people)) {
                     array_push($errors, 'El público objetivo del curso es obligatorio');
@@ -124,6 +129,7 @@ class AdminProductController extends Controller
                 'discount' => $discount,
                 'send' => $send,
                 'pages' => $pages,
+                'published' => $published,
             ];
 
             var_dump($dataForm);
