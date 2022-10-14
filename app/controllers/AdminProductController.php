@@ -46,9 +46,9 @@ class AdminProductController extends Controller
             $type = $_POST['type'] ?? '';
             $name = addslashes(htmlentities($_POST['name'] ?? ''));
             $description = addslashes(htmlentities($_POST['description'] ?? ''));
-            $price = $_POST['price'] ?? '';
-            $discount = $_POST['discount'] ?? '';
-            $send = $_POST['send'] ?? '';
+            $price = Validate::number($_POST['price'] ?? '');
+            $discount = Validate::number($_POST['discount'] ?? '');
+            $send = Validate::number($_POST['send'] ?? '');
             $image = $_FILES['image']['name'];
             $published = $_POST['published'] ?? '';
             $relation1 = $_POST['relation1'] != '' ? $_POST['relation1'] : 0;
@@ -60,7 +60,7 @@ class AdminProductController extends Controller
             //Books
             $author = addslashes(htmlentities($_POST['author'] ?? ''));
             $publisher = addslashes(htmlentities($_POST['publisher'] ?? ''));
-            $pages = $_POST['pages'] ?? '';
+            $pages = Validate::number($_POST['pages'] ?? '');
             //Courses
             $people = addslashes(htmlentities($_POST['people'] ?? ''));
             $objetives = addslashes(htmlentities($_POST['objetives'] ?? ''));
@@ -120,6 +120,10 @@ class AdminProductController extends Controller
                 'people'    => $people,
                 'objetives' => $objetives,
                 'necesites' => $necesites,
+                'price' => $price,
+                'discount' => $discount,
+                'send' => $send,
+                'pages' => $pages,
             ];
 
             var_dump($dataForm);
