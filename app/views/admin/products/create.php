@@ -5,7 +5,7 @@
         <h1 class="text-center">Alta de un producto</h1>
     </div>
     <div class="card-body">
-        <form action="<?= ROOT ?>adminProduct/create/" method="POST">
+        <form action="<?= ROOT ?>adminProduct/create/" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="status">Tipo de producto</label>
                 <select name="status" id="status" class="form-control">
@@ -86,7 +86,7 @@
             </div>
             <div class="form-group text-left">
                 <label for="image">Imagen del producto:</label>
-                <input type="file" name="image" class="form-control" accept="image/jpeg,image/x-png,image/gif" >
+                <input type="file" name="image" class="form-control" accept="image/jpeg,image/x-png,image/gif">
             </div>
             <div class="form-group text-left">
                 <label for="published">Fecha del producto:</label>
