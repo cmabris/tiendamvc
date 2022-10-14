@@ -26,4 +26,13 @@ class AdminProduct
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function getCatalogue()
+    {
+        $sql = 'SELECT id, name, type FROM products WHERE deleted=0 AND status!=0 ORDER BY type, name';
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 }

@@ -39,6 +39,7 @@ class AdminProductController extends Controller
         $dataForm = [];
         $type = $this->model->getConfig('productType');
         $status = $this->model->getConfig('productStatus');
+        $catalogue = $this->model->getCatalogue();
 
         $data = [
             'titulo' => 'Administración de Productos - Alta',
@@ -46,6 +47,7 @@ class AdminProductController extends Controller
             'admin' => true,
             'type' => $type,
             'status' => $status,
+            'catalogue' => $catalogue,
             'errors' => $errors,
             'data' => $dataForm,
         ];
