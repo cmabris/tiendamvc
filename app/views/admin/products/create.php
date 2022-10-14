@@ -1,4 +1,5 @@
 <?php include_once(VIEWS . 'header.php')?>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/classic/ckeditor.js"></script>
 <script src="<?= ROOT . 'js/adminCreateProduct.js' ?>"></script>
 <div class="card p-4 bg-light">
     <div class="card-header">
@@ -167,5 +168,12 @@
     <div class="card-footer">
 
     </div>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch( error => {
+                console.error(error)
+            })
+    </script>
 </div>
 <?php include_once(VIEWS . 'footer.php')?>
