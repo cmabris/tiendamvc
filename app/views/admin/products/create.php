@@ -8,8 +8,8 @@
     <div class="card-body">
         <form action="<?= ROOT ?>adminProduct/create/" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="status">Tipo de producto</label>
-                <select name="status" id="status" class="form-control">
+                <label for="type">Tipo de producto</label>
+                <select name="type" id="type" class="form-control">
                     <option value="">Selecciona el tipo de producto</option>
                     <?php foreach($data['type'] as $type): ?>
                         <option value="<?= $type->value ?>"><?= $type->description ?></option>
