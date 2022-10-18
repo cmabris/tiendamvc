@@ -44,8 +44,8 @@ class AdminProductController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $type = $_POST['type'] ?? '';
-            $name = addslashes(htmlentities($_POST['name'] ?? ''));
-            $description = addslashes(htmlentities($_POST['description'] ?? ''));
+            $name = Validate::text($_POST['name'] ?? '');
+            $description = Validate::text($_POST['description'] ?? '');
             $price = Validate::number($_POST['price'] ?? '');
             $discount = Validate::number($_POST['discount'] ?? '');
             $send = Validate::number($_POST['send'] ?? '');
@@ -58,13 +58,13 @@ class AdminProductController extends Controller
             $new = isset($_POST['new']) ? '1' : '0';
             $status = $_POST['status'] ?? '';
             //Books
-            $author = addslashes(htmlentities($_POST['author'] ?? ''));
-            $publisher = addslashes(htmlentities($_POST['publisher'] ?? ''));
+            $author = Validate::text($_POST['author'] ?? '');
+            $publisher = Validate::text($_POST['publisher'] ?? '');
             $pages = Validate::number($_POST['pages'] ?? '');
             //Courses
-            $people = addslashes(htmlentities($_POST['people'] ?? ''));
-            $objetives = addslashes(htmlentities($_POST['objetives'] ?? ''));
-            $necesites = addslashes(htmlentities($_POST['necesites'] ?? ''));
+            $people = Validate::text($_POST['people'] ?? '');
+            $objetives = Validate::text($_POST['objetives'] ?? '');
+            $necesites = Validate::text($_POST['necesites'] ?? '');
 
             // Validamos la información
             if (empty($name)) {
@@ -115,14 +115,20 @@ class AdminProductController extends Controller
                 array_push($errors, 'Debes seleccionar un tipo válido');
             }
 
-            $image = strtolower($image);
+            if (Validate::imageFile($_FILES['image']['tmp_name'])) {
 
-            if (is_uploaded_file($_FILES['image']['tmp_name'])) {
-                move_uploaded_file($_FILES['image']['tmp_name'], 'img/' . $image);
-                Validate::resizeImage($image, 240);
+                $image = strtolower($image);
+
+                if (is_uploaded_file($_FILES['image']['tmp_name'])) {
+                    move_uploaded_file($_FILES['image']['tmp_name'], 'img/' . $image);
+                    Validate::resizeImage($image, 240);
+                } else {
+                    array_push($errors, 'Error al subir el archivo de imagen');
+                }
             } else {
-                array_push($errors, 'Error al subir el archivo de imagen');
+                array_push($errors, 'El formato de imagen no es aceptado');
             }
+
 
             // Creamos el array de datos
             $dataForm = [
