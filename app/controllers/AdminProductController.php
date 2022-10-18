@@ -148,19 +148,22 @@ class AdminProductController extends Controller
                 'image' => $image,
                 'mostSold' => $mostSold,
                 'new' => $new,
+                'relation1' => $relation1,
+                'relation2' => $relation2,
+                'relation3' => $relation3,
+                'status' => $status,
             ];
-
-            var_dump($dataForm);
 
             if ( ! $errors ) {
 
-                // Enviamos la información al modelo
+                $errors = $this->model->createProduct($dataForm);
 
                 if ( ! $errors ) {
 
-                    // Redirigimos al index de productos
+                    header('location:' . ROOT . 'AdminProduct');
 
                 }
+                array_push($errors, 'Se ha producido un errpr en la inserción en la BD');
             }
 
         }
