@@ -17,9 +17,9 @@
             <?php foreach ($data['products'] as $product): ?>
                 <tr>
                     <td class="text-center"><?= $product->id ?></td>
-                    <td class="text-center"><?= $product->type ?></td>
+                    <td class="text-center"><?= $data['type'][$product->type - 1]->description ?></td>
                     <td class="text-center"><?= $product->name ?></td>
-                    <td class="text-center"><?= $product->description ?></td>
+                    <td class="text-center"><?= html_entity_decode($product->description) ?></td>
                     <td class="text-center">
                         <a href="<?= ROOT ?>adminproduct/update/<?= $product->id ?>"
                            class="btn btn-info"

@@ -46,9 +46,9 @@ class AdminProductController extends Controller
             $type = $_POST['type'] ?? '';
             $name = Validate::text($_POST['name'] ?? '');
             $description = Validate::text($_POST['description'] ?? '');
-            $price = Validate::number($_POST['price'] ?? '');
-            $discount = Validate::number($_POST['discount'] ?? '');
-            $send = Validate::number($_POST['send'] ?? '');
+            $price = Validate::number((float) ($_POST['price'] ?? 0.0));
+            $discount = Validate::number((float) ($_POST['discount'] ?? 0.0));
+            $send = Validate::number((float) ($_POST['send'] ?? 0.0));
             $image = Validate::file($_FILES['image']['name']);
             $published = $_POST['published'] ?? '';
             $relation1 = $_POST['relation1'] != '' ? $_POST['relation1'] : 0;
@@ -58,9 +58,9 @@ class AdminProductController extends Controller
             $new = isset($_POST['new']) ? '1' : '0';
             $status = $_POST['status'] ?? '';
             //Books
-            $author = Validate::text($_POST['author'] ?? '');
-            $publisher = Validate::text($_POST['publisher'] ?? '');
-            $pages = Validate::number($_POST['pages'] ?? '');
+            $author = Validate::text($_POST['author'] ?: 'Pepe');
+            $publisher = Validate::text($_POST['publisher'] ?: 'José');
+            $pages = Validate::number($_POST['pages'] ?: '100');
             //Courses
             $people = Validate::text($_POST['people'] ?? '');
             $objetives = Validate::text($_POST['objetives'] ?? '');
@@ -133,7 +133,6 @@ class AdminProductController extends Controller
                 array_push($errors, 'No he recibido la imagen');
             }
 
-
             // Creamos el array de datos
             $dataForm = [
                 'type'  => $type,
@@ -160,9 +159,7 @@ class AdminProductController extends Controller
 
             if ( ! $errors ) {
 
-                $errors = $this->model->createProduct($dataForm);
-
-                if ( ! $errors ) {
+                if ( $this->model->createProduct($dataForm) ) {
 
                     header('location:' . ROOT . 'AdminProduct');
 

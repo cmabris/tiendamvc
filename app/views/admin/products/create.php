@@ -82,8 +82,8 @@
                        value="<?= $data['data']['discount'] ?? '' ?>">
             </div>
             <div class="form-group text-left">
-                <label for="envio">Coste del envío del producto:</label>
-                <input type="text" name="envio" class="form-control" pattern="^(\d|-)?(\d|,)*\.?\d*$"
+                <label for="send">Coste del envío del producto:</label>
+                <input type="text" name="send" class="form-control" pattern="^(\d|-)?(\d|,)*\.?\d*$"
                        placeholder="Escribe el costo del envio del producto sin comas ni símbolos."
                        value="<?= $data['data']['send'] ?? '' ?>">
             </div>
