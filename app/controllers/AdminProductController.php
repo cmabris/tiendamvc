@@ -37,8 +37,8 @@ class AdminProductController extends Controller
     {
         $errors = [];
         $dataForm = [];
-        $type = $this->model->getConfig('productType');
-        $status = $this->model->getConfig('productStatus');
+        $typeConfig = $this->model->getConfig('productType');
+        $statusConfig = $this->model->getConfig('productStatus');
         $catalogue = $this->model->getCatalogue();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -115,18 +115,22 @@ class AdminProductController extends Controller
                 array_push($errors, 'Debes seleccionar un tipo válido');
             }
 
-            if (Validate::imageFile($_FILES['image']['tmp_name'])) {
+            if ($image) {
+                if (Validate::imageFile($_FILES['image']['tmp_name'])) {
 
-                $image = strtolower($image);
+                    $image = strtolower($image);
 
-                if (is_uploaded_file($_FILES['image']['tmp_name'])) {
-                    move_uploaded_file($_FILES['image']['tmp_name'], 'img/' . $image);
-                    Validate::resizeImage($image, 240);
+                    if (is_uploaded_file($_FILES['image']['tmp_name'])) {
+                        move_uploaded_file($_FILES['image']['tmp_name'], 'img/' . $image);
+                        Validate::resizeImage($image, 240);
+                    } else {
+                        array_push($errors, 'Error al subir el archivo de imagen');
+                    }
                 } else {
-                    array_push($errors, 'Error al subir el archivo de imagen');
+                    array_push($errors, 'El formato de imagen no es aceptado');
                 }
             } else {
-                array_push($errors, 'El formato de imagen no es aceptado');
+                array_push($errors, 'No he recibido la imagen');
             }
 
 
@@ -172,8 +176,8 @@ class AdminProductController extends Controller
             'titulo' => 'Administración de Productos - Alta',
             'menu' => false,
             'admin' => true,
-            'type' => $type,
-            'status' => $status,
+            'type' => $typeConfig,
+            'status' => $statusConfig,
             'catalogue' => $catalogue,
             'errors' => $errors,
             'data' => $dataForm,

@@ -12,7 +12,9 @@
                 <select name="type" id="type" class="form-control">
                     <option value="">Selecciona el tipo de producto</option>
                     <?php foreach($data['type'] as $type): ?>
-                        <option value="<?= $type->value ?>"><?= $type->description ?></option>
+                        <option value="<?= $type->value ?>"
+                            <?= (isset($data['data']['type']) && $data['data']['type'] == $type->value) ? ' selected' : '' ?>
+                        ><?= $type->description ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

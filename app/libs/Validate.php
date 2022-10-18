@@ -14,6 +14,10 @@ class Validate
     {
         $date = explode('-', $string);
 
+        if (count($date) == 1) {
+            return false;
+        }
+
         return checkdate($date[1], $date[2], $date[0]);
     }
 
