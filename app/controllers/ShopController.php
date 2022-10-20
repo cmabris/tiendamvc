@@ -55,4 +55,22 @@ class ShopController extends Controller
 
         $this->view('shop/show', $data);
     }
+
+    public function whoami()
+    {
+        $session = new Session();
+
+        if ($session->getLogin()) {
+
+            $data = [
+                'titulo' => 'Quienes somos',
+                'menu' => true,
+                'active' => 'whoami',
+            ];
+
+            $this->view('shop/whoami', $data);
+        } else {
+            header('location:' . ROOT);
+        }
+    }
 }
