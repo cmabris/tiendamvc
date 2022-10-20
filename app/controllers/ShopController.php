@@ -14,10 +14,14 @@ class ShopController extends Controller
         $session = new Session();
 
         if ($session->getLogin()) {
+
+            $mostSold = $this->model->getMostSold();
+
             $data = [
                 'titulo' => 'Bienvenid@ a nuestra tienda',
                 'menu' => true,
                 'subtitle' => 'Bienvenid@ a nuestra tienda',
+                'data' => $mostSold,
             ];
             $this->view('shop/index', $data);
         } else {
@@ -31,5 +35,10 @@ class ShopController extends Controller
         $session = new Session();
         $session->logout();
         header('location:' . ROOT);
+    }
+
+    public function show($id)
+    {
+        var_dump($id);
     }
 }
