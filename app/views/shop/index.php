@@ -21,7 +21,6 @@
             <?php endforeach; ?>
         </div>
     </div>
-    <div class="card p-4 bg-light">
         <div class="card-header">
             <h1 class="text-center"><?= $data['subtitle2'] ?></h1>
         </div>
@@ -42,5 +41,4 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
-    </div>
 <?php include_once dirname(__DIR__) . ROOT . 'footer.php'?>

@@ -22,7 +22,7 @@
     <h4>Resumen:</h4>
     <?= html_entity_decode($data['data']->description) ?>
 <?php endif; ?>
-<a href="<?= ROOT ?>shop" class="btn btn-success">Volver al listado de productos</a>
+<a href="<?= ROOT . (!empty($data['back']) ? $data['back'] : 'shop') ?>" class="btn btn-success">Volver al listado de productos</a>
 <?php include_once dirname(__DIR__) . ROOT . 'footer.php'?>
 
 

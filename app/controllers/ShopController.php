@@ -40,7 +40,7 @@ class ShopController extends Controller
         header('location:' . ROOT);
     }
 
-    public function show($id)
+    public function show($id, $back = '')
     {
         $product = $this->model->getProductById($id);
 
@@ -48,6 +48,7 @@ class ShopController extends Controller
             'titulo' => 'Detalle del producto',
             'menu' => true,
             'subtitle' => $product->name,
+            'back' => $back,
             'errors' => [],
             'data' => $product,
         ];
