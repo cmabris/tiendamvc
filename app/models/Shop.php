@@ -16,4 +16,13 @@ class Shop
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function getProductById($id)
+    {
+        $sql = 'SELECT * FROM products WHERE id=:id';
+        $query = $this->db->prepare($sql);
+        $query->execute([':id' => $id]);
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 }

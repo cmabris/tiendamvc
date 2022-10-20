@@ -39,6 +39,16 @@ class ShopController extends Controller
 
     public function show($id)
     {
-        var_dump($id);
+        $product = $this->model->getProductById($id);
+
+        $data = [
+            'titulo' => 'Detalle del producto',
+            'menu' => true,
+            'subtitle' => $product->name,
+            'errors' => [],
+            'data' => $product,
+        ];
+
+        $this->view('shop/show', $data);
     }
 }
