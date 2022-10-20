@@ -11,7 +11,7 @@
             <div class="card pt-2 col-sm-3">
                 <img src="img/<?= $value->image ?>" class="img-responsive"
                      style="width:100%" alt="<?= $value->name ?>">
-                <a href="<?= ROOT ?>shop/show/<?= $value->id ?>/courses"><p><?= $value->name ?></p></a>
+                <a href="<?= ROOT ?>shop/show/<?= $value->id ?>/books"><p><?= $value->name ?></p></a>
             </div>
             <?php if ($key%4==3): ?>
                 </div>
