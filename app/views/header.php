@@ -43,6 +43,13 @@
             </div>
             <div class="d-flex justify-content-end">
                 <ul class="nav navbar-nav navbar-right">
+                    <?php if(isset($_SESSION['cartTotal']) && $_SESSION['cartTotal'] > 0): ?>
+                    <li class="nav-item">
+                        <a href="<?= ROOT ?>cart" class="nav-link">
+                            Carrito: <?= number_format($_SESSION['cartTotal'], 2) ?>&euro;
+                        </a>
+                    </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <form action="<?= ROOT ?>search/products" class="d-flex" method="POST">
                             <input type="text" name="search" id="search" class="form-control"
