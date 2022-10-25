@@ -114,6 +114,19 @@ class CartController extends Controller
 
     public function verify()
     {
-        var_dump($_POST);
+        $session = new Session();
+        $user = $session->getUser();
+        $cart = $this->model->getCart($user->id);
+        $payment = $_POST['payment'] ?? '';
+
+        $data = [
+            'titulo' => 'Carrito | Verificar los datos',
+            'menu' => true,
+            'payment' => $payment,
+            'user' => $user,
+            'data' => $cart,
+        ];
+
+        $this->view('cart/verify', $data);
     }
 }
