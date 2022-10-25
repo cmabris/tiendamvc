@@ -71,4 +71,15 @@ class Cart
 
         return $query->execute($params);
     }
+
+    public function delete($product, $user)
+    {
+        $sql = 'DELETE FROM carts WHERE user_id=:user_id AND product_id=:product_id';
+        $query = $this->db->prepare($sql);
+        $params = [
+            ':user_id' => $user,
+            ':product_id' => $product,
+        ];
+        return $query->execute($params);
+    }
 }
