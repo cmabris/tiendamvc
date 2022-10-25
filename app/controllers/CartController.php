@@ -127,6 +127,6 @@ class CartController extends Controller
             'data' => $cart,
         ];
 
-        $this->view('cart/verify', $data);
+        $this->view('carts/verify', $data);
     }
 }
