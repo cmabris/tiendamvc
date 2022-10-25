@@ -100,4 +100,20 @@ class CartController extends Controller
             $this->view('carts/checkout', $data);
         }
     }
+
+    public function paymentmode()
+    {
+        $data = [
+            'titulo' => 'Carrito | Forma de pago',
+            'subtitle' => 'Checkout | Forma de pago',
+            'menu' => true,
+        ];
+
+        $this->view('carts/paymentmode', $data);
+    }
+
+    public function verify()
+    {
+        var_dump($_POST);
+    }
 }
