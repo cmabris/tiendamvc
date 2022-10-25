@@ -78,8 +78,18 @@ class CartController extends Controller
     {
         $session = new Session();
 
-        if (! $session->getLogin()) {
-            //
+        if ($session->getLogin()) {
+
+            $user = $session->getUser();
+
+            $data = [
+                'titulo' => 'Carrito | Datos de envío',
+                'subtitle' => 'Checkout | Verificar dirección de envío',
+                'menu' => true,
+                'data' => $user,
+            ];
+            $this->view('carts/address', $data);
+
         } else {
             $data = [
                 'titulo' => 'Carrito | Checkout',
