@@ -81,12 +81,13 @@
                     Pagar
                 </a>
             </td>
-            <?= else: ?>
+            <?php else: ?>
             <td>
                 <a href="<?= ROOT ?>cart/checkout" class="btn btn-success" role="button">
                     Pagar
                 </a>
             </td>
+            <?php endif; ?>
         </tr>
     </table>
 </form>
