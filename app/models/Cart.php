@@ -82,4 +82,15 @@ class Cart
         ];
         return $query->execute($params);
     }
+
+    public function closeCart($id, $state)
+    {
+        $sql = 'UPDATE carts SET state=:state WHERE user_id=:user_id AND state=0';
+        $query = $this->db->prepare($sql);
+        $params = [
+            ':user_id' => $id,
+            ':state' => $state,
+        ];
+        return $query->execute($params);
+    }
 }
